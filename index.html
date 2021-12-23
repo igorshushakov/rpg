@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/gamebuttons.css">
+    <link rel="stylesheet" href="./styles/shop.css">
+    <link rel="stylesheet" href="./styles/bazar.css">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+          <img src="img/pixil-frame-0 (9).png" alt="logo">
+          <p>Ход: <span id='turn'></span></p>
+          <p>Уровень: <span id='lvl'></span></p>
+          <p><span id="info"></span></p>
+      </header>
+      <div class="main">
+          <div class="gameplay">
+              <div class="hero">
+                  <img src="img/chelovek.png" alt="hero" class='heroimg'>
+                  <div class="stats">
+                      <p>Атака: <span id="hero_attack">0</span></p>
+                      <p>Здоровье: <span id="hero_health">0</span></p>
+                      <p>Мана: <span id="mana">0</span></p>
+                      <p>Монеты: <span id="money">0</span></p>
+                  </div>
+              </div>
+              <div class="enemy">
+                  <img src="img/diavol.png" alt="enemy" id="enemyImage">
+                  <div class="stats">
+                      <p>Атака: <span id="enemy_attack">0</span></p>
+                      <p>Здоровье: <span id="enemy_health">0</span></p>
+                  </div>
+              </div>
+          </div>
+          <div class="interface">
+              <div class="gamebutton">
+                  <details >
+                      <summary>Типы атак</summary>
+                     <button id="baseattack">Обычная атака</button>
+                     <button id="molot">Молот тора</button>
+                     <button id="zemlica">Сила земли</button>
+                  </details>
+                  <details>
+                      <summary>Типы восстановления</summary>
+                     <button id="regenhp">Восстановить хп</button>
+                     <button id="intenAttack">Усилить атаку(На 1 ход)</button>
+                     <button id="regenmana">Восстановить ману (Пропуск хода)</button>
+                     <button id="block">Заблокировать урон</button>
+                  </details>
+                  <details>
+                      <summary>Спецспособности</summary>
+                     <button id="earthquake">Землятресение (тратит 100 маны)</button>
+                     <button id="firestorm">Огненный смерч (тратит 150 маны,40% хп)</button>
+                     <button id="thunderbolt">Удар Зевса (тратит ВСЮ ману,70% хп)</button>
+                  </details>
+              </div>
+              <div class="div_shop">
+                  <details>
+                      <summary>Зелья здоровья</summary>
+                      <button>Маленькое зелье (<span id='shp_b'></span>)</button>
+                      <button>Среднее зелье (<span id='mhp_b'></span>)</button>
+                      <button>Большое зелье (<span id='bhp_b'></span>)</button>
+                  </details>
+                  <details>
+                      <summary>Зелья маны</summary>
+                      <button>Маленькое зелье (<span id='smp_b'></span>)</button>
+                      <button>Среднее зелье (<span id='mmp_b'></span>)</button>
+                      <button>Большое зелье (<span id='bmp_b'></span>)</button>
+                  </details>
+                  <button class='dop_button drevo' id='drevo'>Древо навыков</button>
+                  <button class='dop_button shop' id='shop'>Лавка</button>
+                  <button class='dop_button bazar' id='bazar'>Базар</button>
+              </div>
+          </div>
+      </div>
+      <div class='popup'>
+          <div class='popup_content'>
+              <div class='popup_header'>
+                  <button class='dop_button' id='drevo_close'>X</button><p id="fraza">Это древо навыков. Иди зарабатывай монеты</p>  
+              </div>
+              <div class='drevo_lvl1'>
+                  <button class="drevo_button" id='fiz_pod'><img src="img/drevo_navikov/fiz_pod.png"></button>
+              </div>
+              <div class='drevo_lvl2'>
+                  <button class="drevo_button" id='vampir1'><img src="img/drevo_navikov/vampirizm/1 vampir.png"></button>
+                  <button class="drevo_button" id='blizniy1'><img src="img/drevo_navikov/blizniy_boi/blizniy1.png"></button>
+              </div>
+              <div class='drevo_lvl3'>
+                  <button class="drevo_button" id='vampir2'><img src="img/drevo_navikov/vampirizm/2 vampir.png"></button>
+                  <button class="drevo_button" id='diplomat1'><img src="img/drevo_navikov/diplomatia/1 diplomat.png"></button>
+                  <button class="drevo_button" id='blizniy2'><img src="img/drevo_navikov/blizniy_boi/blizniy2.png"></button>
+              </div>
+              <div class='drevo_lvl4'>
+                  <button class="drevo_button" id='vampir3'><img src="img/drevo_navikov/vampirizm/3 vampir.png"></button>
+                  <button class="drevo_button" id='diplomat2'><img src="img/drevo_navikov/diplomatia/2 diplomat.png"></button>
+                  <button class="drevo_button" id='blizniy3'><img src="img/drevo_navikov/blizniy_boi/blizniy3.png"></button>
+              </div>
+          </div>    
+      </div>
+      <div class='shop_popup'>
+          <div class='shop_popup_content'>
+              <div class='shop_popup_header'>
+                  <button class='dop_button' id='shop_close'>X</button><p id="fraza_shop">Это лавка. Иди зарабатывай монеты</p>  
+              </div>
+              <div class='shop_popup_products'>
+                  <div class='product_potions'>
+                      <button class='potion dop_button' id='smp'>Маленькое зелье маны. Цена:150</button>
+                      <button class='potion dop_button' id='mmp'>Среднее зелье маны. Цена:300</button>
+                      <button class='potion dop_button' id='bmp'>Большое зелье маны. Цена:600</button>
+                      <button class='potion dop_button' id='shp'>Маленькое зелье здоровья. Цена:150</button>
+                      <button class='potion dop_button' id='mhp'>Среднее зелье здоровья. Цена:300</button>
+                      <button class='potion dop_button' id='bhp'>Большое зелье здоровья. Цена:600</button>
+                  </div>
+                  <div class='product_staff'></div>
+              </div>
+          </div>
+      </div>
+      <div class='bazar_popup'>
+        <div class='bazar_popup_content'>
+            <div class='bazar_popup_header'>
+                <button class='dop_button' id='bazar_close'>X</button><p id="fraza_bazar">Это базар. Тут есть торговцы с разными курсами цен.</p>  
+            </div>
+            <div class='bazar_popup_products'>
+                <div class='sellzone'>
+                    <div class='1shopper'>
+                        <img class='shopperimg'>
+                        <div class='stats_1shopper'>
+                            <p>Имя продавца:<span id='name_1shopper'></span></p>
+                            <p>Доверие продавца:<span id='rating_1shopper'></span></p>
+                            <p>Кол-во товаров:<span id='object_1shopper'></span></p>
+                        </div>
+                        <div class='1shopper_buttons'>
+                            <button id='buy_product_of_1shopper' class='dop_button'>Купить товар</button>
+                            <button id='sell_product_of_1shopper' class='dop_button'>Продать товар</button>
+                        </div>
+                    </div>
+                    <div class='2shopper'>
+                        <img class='shopperimg'>
+                        <div class='stats_2shopper'>
+                            <p>Имя продавца:<span id='name_2shopper'></span></p>
+                            <p>Доверие продавца:<span id='rating_2shopper'></span></p>
+                            <p>Кол-во товаров:<span id='object_2shopper'></span></p>
+                        </div>
+                        <div class='2shopper_buttons'>
+                            <button id='buy_product_of_2shopper' class='dop_button'>Купить товар</button>
+                            <button id='sell_product_of_2shopper' class='dop_button'>Продать товар</button>
+                        </div>
+                    </div>
+                    <div class='3shopper'>
+                        <img class='shopperimg'>
+                        <div class='stats_3shopper'>
+                            <p>Имя продавца:<span id='name_3shopper'></span></p>
+                            <p>Доверие продавца:<span id='rating_3shopper'></span></p>
+                            <p>Кол-во товаров:<span id='object_3shopper'></span></p>
+                        </div>
+                        <div class='3shopper_buttons'>
+                            <button id='buy_product_of_3shopper' class='dop_button'>Купить товар</button>
+                            <button id='sell_product_of_3shopper' class='dop_button'>Продать товар</button>
+                        </div>
+                    </div>
+                    <div class='shelf'>
+                        <div class='shelf_product'>
+                           <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+                        <div class='shelf_product'>
+                            <button class='product_button'><img src=""></button> 
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- <script src="script.js"></script>
+  <script src="scripts/enemy.js"></script>
+  <script src="scripts/hero.js"></script> -->
+  <script src="./scripts/test.js"></script>
+  <script src="./scripts/drevo.js"></script>
+  <script src="./scripts/shop.js"></script>
+    <script src="./renderer.js"></script>
+    <script src="./scripts/bazar.js"></script>
+  </body>
+</html>
