@@ -1,0 +1,139 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-size: 20px;
+    color: rgb(223, 223, 223);
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:url("img/JkibHG.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+header{
+    background-color:rgb(64, 64, 83);
+    border-radius: 20px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+header img{
+    margin: 5px 10px;
+    width: 80px;
+}
+.main{
+    opacity: 1;
+    border-radius:1px;
+}
+.gameplay{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0;
+}
+.hero, .enemy{
+    text-align: center;
+    background-color:rgb(64, 64, 83,0.466) ;
+    border-radius: 20px;
+    width:40%;
+    padding: 20px;
+}
+.hero>img{
+    width: 100px;
+    margin: 20px;
+}
+/* .heroimg{
+    animation: jump 0.5s;
+}
+@keyframes jump{
+    0%{
+        transform:translateY(0);
+    }
+} */
+.enemy>img{
+    width: 100px;
+    margin: 20px;
+}
+.stats{
+    display: flex;
+    justify-content: space-around;
+}
+.interface{
+    background-color:rgba(64, 64, 83, 0.466) ;
+    border-radius: 20px;
+    display: flex;
+}
+.popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.700);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s all;
+}
+.popup.active{
+    opacity:1;
+    pointer-events: all;
+    transition: 0.5s all;
+}
+.popup_content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    background: url('img/drevo_navikov/zvezdy.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 60vw;
+    height: 90vh;
+    padding:25px;
+    transition: 0.5s all;
+}
+.popup_content.active{
+    transform: translate(-50%,-50%) scale(1);
+    transition: 0.5s all;
+    border-radius:20px;
+}
+.popup_header{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+.drevo_lvl1{
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+.drevo_lvl2{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+}
+.drevo_lvl3{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+.drevo_lvl4{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+.drevo_active{
+    background-color: ghostwhite;
+}
+#fraza{
+    font-size:30px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}

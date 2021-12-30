@@ -1,0 +1,57 @@
+.gamebutton{
+    width: 50%;
+    padding: 20px;
+}
+.div_shop{
+    width: 40%;
+    padding: 20px;
+}
+summary{
+    margin: 10px;
+}
+details{
+  transition: all 1.1s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+}
+details>button{
+    background-color: rgba(255, 255, 255, 0.226);
+    border: 2px solid rgb(199, 199, 199);
+    padding: 10px 5px;
+    margin: 5px;
+}
+.dop_button{
+  background-color: rgba(255, 255, 255, 0.226);
+  border: 2px solid rgb(199, 199, 199);
+  padding: 10px 5px;
+  margin: 5px;
+}
+
+
+/* Убираем стандартный маркер Chrome */
+details summary::-webkit-details-marker {
+    display: none;
+  }
+  /* Убираем стандартный маркер Firefox */
+  details > summary {
+    list-style: none;
+  }
+  
+  /* Добавляем собственный маркер для закрытого состояния */
+  details summary:before {
+    content: '+';
+    margin-right: 7px;
+  }
+  
+  /* Добавляем собственный маркер для открытого состояния */
+  details[open] summary:before {
+    content: '-';
+  }
+
+
+.drevo_button{
+  background-color: black;
+  border-radius: 30px;
+  border: none;
+  padding: 15px;
+  text-align: center;
+}
+  
