@@ -30,6 +30,7 @@ header img{
 }
 .main{
     opacity: 1;
+    border-radius:1px;
 }
 .gameplay{
     display: flex;
